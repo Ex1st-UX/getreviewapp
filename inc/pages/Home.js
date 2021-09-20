@@ -3,16 +3,17 @@ import {StyleSheet, Text, View} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { AntDesign } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
-import {GetRights} from "./GetRights";
+import {Contacts} from "./Contacts";
+import {Settings} from "./Settings";
 
 const Tab = createBottomTabNavigator();
 
-export const Contacts = () => {
+export const Home = () => {
     return (
             <Tab.Navigator>
                 <Tab.Screen
                     name="Контакты"
-                    component={Welcome}
+                    component={Contacts}
                     options={{
                         tabBarActiveTintColor: 'blue',
                         tabBarHideOnKeyboard: false,
@@ -24,7 +25,7 @@ export const Contacts = () => {
                 />
                 <Tab.Screen
                     name="Настройки"
-                    component={GetRights}
+                    component={Settings}
                     options={{
                         tabBarActiveTintColor: 'blue',
                         tabBarLabel: 'Настройки',
