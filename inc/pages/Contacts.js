@@ -2,9 +2,12 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View, FlatList} from 'react-native';
 import * as ExpoContacts from 'expo-contacts';
 import {SectionList} from "react-native-web";
-import {useNavigation} from '@react-navigation/native';
+import {Link, useNavigation} from '@react-navigation/native';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 import {Ionicons} from '@expo/vector-icons';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+import {Detail} from "./Detail";
 
 export const Contacts = props => {
     const [isLoading, setIsLoading] = useState(false);
@@ -15,7 +18,7 @@ export const Contacts = props => {
         getContactBook()
     }, []);
 
-    const navigation = useNavigation();
+    const Stack = createNativeStackNavigator();
 
     // Записываем все контакты пользователя
     async function getContactBook(item) {
@@ -267,22 +270,32 @@ export const Contacts = props => {
             });
     }
 
+    const navigation = useNavigation();
+
+    // Рендерим карточку контакта
     const renderContact = ({item}) => {
         let raitingValue, raitingImage;
+        let phone = item.phone;
 
         if (item.stars > 0) {
             raitingValue = <Text style={styles.raitingValue}>{item.stars}</Text>;
-            raitingImage = <Ionicons name="star-outline" size={28} color="gold" />
-        }
-        else {
-            raitingImage = <Ionicons name="star-outline" size={28} color="black" />
+            raitingImage = <Ionicons name="star-outline" size={28} color="gold"/>
+        } else {
+            raitingImage = <Ionicons name="star-outline" size={28} color="black"/>
         }
 
         return (
             <View style={styles.cardItem}>
+                <View style={styles.raitingWrapper}>
+                    <MaterialCommunityIcons name="account-circle-outline" size={28} color="blue"/>
+                </View>
                 <View style={styles.textWrapper}>
-                    <Text style={styles.cardItemName}>{item.name}</Text>
-                    <Text style={styles.cardItemPhone}>{item.phone}</Text>
+                    <Text style={styles.cardItemName} onPress={() => {navigation.navigate('Detail', {item})}}>
+                        {item.name}
+                    </Text>
+                    <Text style={styles.cardItemPhone} onPress={() => {navigation.navigate('Detail', {item})}}>
+                        {item.phone}
+                    </Text>
                 </View>
                 <View style={styles.raitingWrapper}>
                     {raitingValue}
@@ -307,38 +320,45 @@ export const Contacts = props => {
 const styles = StyleSheet.create({
     contentWrapper: {
         flex: 1,
-        padding: 15
+        padding: 10
     },
     cardItem: {
         padding: 10,
         marginBottom: 5,
-        borderBottomColor: 'grey',
-        borderBottomWidth: 1,
         flexDirection: 'row'
     },
     cardItemName: {
-        fontWeight: 500,
-        fontSize: 16
+        fontWeight: '500',
+        fontSize: 15
     },
     cardItemPhone: {
         color: 'grey',
         fontSize: 14,
     },
     textWrapper: {
-        flex: 2,
-        flexDirection: 'column'
+        flex: 15,
+        flexDirection: 'column',
+        marginLeft: 15
     },
-    raitingWrapper: {
-        flex: 2,
+    cardImage: {
+        flex: 3,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-end'
+        justifyContent: 'center',
+        marginLeft: 10
     },
-    raitingValue: {
-        marginRight: 5,
+    raitingWrapper: {
+        flex: 1,
+        flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-end',
-        fontSize: 22
-    }
+        marginRight: 5
+    },
+    raitingValue: {
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        fontSize: 22,
+        marginRight: 5
+    },
 });
 

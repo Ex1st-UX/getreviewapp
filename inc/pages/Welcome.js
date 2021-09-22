@@ -6,6 +6,7 @@ import {useNavigation} from '@react-navigation/native';
 import {Home} from "./Home";
 import {AntDesign} from '@expo/vector-icons';
 import {FlatList} from "react-native-web";
+import {Detail} from "./Detail";
 
 export const Welcome = props => {
     const Stack = createStackNavigator();
@@ -84,6 +85,16 @@ export const Welcome = props => {
                 component={Home}
                 options={{
                     headerShown: false
+                }}
+            />
+            <Stack.Screen
+                name="Detail"
+                component={Detail}
+                options={{
+                    title: 'Страница контакта',
+                    animationEnabled: true,
+                    animationTypeForReplace: 'pop',
+                    headerShown: true
                 }}
             />
         </Stack.Navigator>
