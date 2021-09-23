@@ -18,15 +18,16 @@ export const Detail = props => {
             method: 'POST',
             body: JSON.stringify(data.id)
         })
-            .then(res => res.json)
+            .then(res => res.json())
             .then(res => {
-                console.log(res);
-                setDetailData(res)
+                setDetailData(Object.values(res))
             })
             .catch(er => {
                 console.log(er);
             });
     }
+
+    console.log(detailData);
 
     return(
         <View>
