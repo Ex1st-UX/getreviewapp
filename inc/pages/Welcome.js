@@ -91,10 +91,14 @@ export const Welcome = props => {
                 name="Detail"
                 component={Detail}
                 options={{
-                    title: 'Страница контакта',
+                    title: 'Назад',
                     animationEnabled: true,
                     animationTypeForReplace: 'pop',
-                    headerShown: true
+                    headerShown: true,
+                    headerTintColor: 'white',
+                    headerStyle: {
+                        backgroundColor: 'blue',
+                    },
                 }}
             />
         </Stack.Navigator>
