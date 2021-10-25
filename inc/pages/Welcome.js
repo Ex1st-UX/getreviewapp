@@ -5,6 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
 import {Home} from "./Home";
 import {Detail} from "./Detail";
+import {Register} from "./login/Register";
 
 export const Welcome = props => {
     const Stack = createStackNavigator();
@@ -26,29 +27,7 @@ export const Welcome = props => {
                         title="Далее"
                         color={'blue'}
                         width={'50%'}
-                        onPress={() => navigation.navigate('BeforeStart')}
-                    />
-                </View>
-            </View>
-        );
-    }
-
-    // Слайд "Настройки перед использованием"
-    const BeforeStart = () => {
-        const navigation = useNavigation();
-
-        return (
-            <View style={styles.container}>
-                <View style={styles.content}>
-                    <Text style={{fontSize: 18, fontWeight: '500'}}>Как пользоваться?</Text>
-                    <Text style={styles.text}>1. Проверьте, что у приложения есть доступ к контактам</Text>
-                    <Text style={styles.text}>2. Нажмите далее</Text>
-                </View>
-                <View style={{flex: 1}}>
-                    <Button
-                        title="Далее"
-                        color={'blue'}
-                        onPress={() => navigation.navigate('Home')}
+                        onPress={() => navigation.navigate('Register')}
                     />
                 </View>
             </View>
@@ -72,8 +51,8 @@ export const Welcome = props => {
                 }}
             />
             <Stack.Screen
-                name="BeforeStart"
-                component={BeforeStart}
+                name="Register"
+                component={Register}
                 options={{
                     title: 'Назад'
                 }}
@@ -103,7 +82,6 @@ export const Welcome = props => {
     );
 }
 
-// Стили
 const styles = StyleSheet.create({
     container: {
         flex: 1,
