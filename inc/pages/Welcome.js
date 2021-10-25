@@ -1,11 +1,9 @@
 import React from 'react';
-import {StyleSheet, Text, View, Button} from 'react-native';
+import {StyleSheet, Text, View, Button, AsyncStorage} from 'react-native';
 import 'react-native-gesture-handler';
 import {createStackNavigator} from '@react-navigation/stack';
 import {useNavigation} from '@react-navigation/native';
 import {Home} from "./Home";
-import {AntDesign} from '@expo/vector-icons';
-import {FlatList} from "react-native-web";
 import {Detail} from "./Detail";
 
 export const Welcome = props => {

@@ -4,7 +4,8 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {AntDesign} from '@expo/vector-icons';
 import {Feather} from '@expo/vector-icons';
 import {Contacts} from "./Contacts";
-import {Settings} from "./Settings";
+import {Profile} from "./Profile";
+import {Detail} from "./Detail";
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +23,7 @@ export const Home = () => {
                 tabBarLabelStyle: {
                     fontSize: 13,
                     fontWeight: '400'
-                }
+                },
             }}
         >
             <Tab.Screen
@@ -31,20 +32,20 @@ export const Home = () => {
                 options={{
                     tabBarActiveTintColor: 'blue',
                     tabBarHideOnKeyboard: false,
-                    tabBarLabel: 'Контакты',
-                    tabBarIcon: () => (
-                        <Feather name="phone" size={24} color="grey"/>
+                    tabBarLabel: '',
+                    tabBarIcon: ({focused, color}) => (
+                        <Feather focused={focused} name="phone" size={30} color={color} />
                     ),
                 }}
             />
             <Tab.Screen
-                name="Настройки"
-                component={Settings}
+                name="Профиль"
+                component={Profile}
                 options={{
+                    tabBarLabel: '',
                     tabBarActiveTintColor: 'blue',
-                    tabBarLabel: 'Настройки',
-                    tabBarIcon: () => (
-                        <AntDesign name="setting" size={24} color="grey"/>
+                    tabBarIcon: ({focused, color}) => (
+                        <AntDesign focused={focused} name="contacts" size={30} color={color} />
                     ),
                 }}
             />

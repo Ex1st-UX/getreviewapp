@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, View} from "react-native-web";
 
-export const Settings = () => {
+export const Profile = () => {
 
     return (
       <View>
